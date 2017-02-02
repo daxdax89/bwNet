@@ -9,7 +9,6 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import rs.co.micro.micro.BwLogout;
-import rs.co.micro.micro.BwNavMeni;
 
 /**
  *
@@ -20,8 +19,9 @@ import rs.co.micro.micro.BwNavMeni;
 public class BWnFinex extends VerticalLayout implements View {
 
     Navigator navigator;
-    BwNavMeni navMeni = new BwNavMeni();
+          
     BwLogout logout = new BwLogout();
+
     public BWnFinex() {
 
         //Main Panel
@@ -33,13 +33,11 @@ public class BWnFinex extends VerticalLayout implements View {
         HorizontalLayout topMenu = new HorizontalLayout();
         topMenu.setSizeFull();
 
-                Label paketNaslov = new Label("nFinex");
+        Label paketNaslov = new Label("nFinex");
         paketNaslov.setId("naslovFinex");
-        addComponents(topMenu, paketNaslov);
 
-        topMenu.addComponents(navMeni, logout);
+        topMenu.addComponents(logout);
         addComponents(topMenu, paketNaslov);
-
 
     }
 

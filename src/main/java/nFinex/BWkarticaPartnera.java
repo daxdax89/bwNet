@@ -64,7 +64,6 @@ public class BWkarticaPartnera extends VerticalLayout implements View {
         TextField partnerResult = new TextField();
         partnerResult.setEnabled(false);
 
-//Table.sort(Object[] propertyId, boolean[] ascending);
         //Dodavanje komponenti
         topMenu.addComponents(navMeni, logout);
         addComponents(topMenu, naslov, prvi, drugi, tablica);

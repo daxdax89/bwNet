@@ -6,7 +6,6 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Responsive;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
@@ -19,13 +18,12 @@ import com.vaadin.ui.VerticalLayout;
  *
  * @author damir
  */
-@Title("Configure")
+@Title("Login")
 public class login extends VerticalLayout implements View {
 
     private Navigator navigator;
 
     public login() {
-        Responsive.makeResponsive(this);
         setMargin(true);
         setSpacing(true);
         setResponsive(true);

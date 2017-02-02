@@ -37,7 +37,7 @@ public class BwTable extends CustomComponent{
             System.out.println("radi");
 
         } catch (SQLException e) {
-            System.out.println("Zajebao si");
+            System.out.println("Zajebao si" + e);
         }
 
         //Dodeljivanje imena kolona

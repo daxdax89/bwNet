@@ -11,11 +11,11 @@ import nFinex.BWkarticaPartnera;
  *
  * @author damir
  */
-public class BwNavMeni extends CustomComponent {
+public class BwNavMeni extends CustomComponent{
 
     Navigator navigator;
 
-    public BwNavMeni() {
+    public BwNavMeni() throws SQLException {
         MenuBar navMeni = new MenuBar();
         navMeni.setId("navMeni");
         navMeni.setSizeFull();
@@ -31,18 +31,17 @@ public class BwNavMeni extends CustomComponent {
             }
         };
 
-        // Kreira Kartica Partnera submeni i pokazuje Karticu 
-        MenuBar.MenuItem karticaPartnera = uvidi.addItem("Kartica Partnera", null, new MenuBar.Command() {
+
+        navigator.addView("karticaPartnera", new BWkarticaPartnera());
+        MenuBar.Command kpKomanda = new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
-                try {
-                    navigator.addView("BWKarticaPartnera", new BWkarticaPartnera());
-                } catch (SQLException ex) {
-                    System.out.println("Greska (BWnFiex klasa)" + SQLException.class);
-                }
-                navigator.navigateTo("BWKarticaPartnera");
+                navigator.navigateTo("karticaPartnera");
             }
-        });
+        };
+
+        // Kreira Kartica Partnera submeni i pokazuje Karticu 
+        MenuBar.MenuItem karticaPartnera = uvidi.addItem("Kartica Partnera", null, kpKomanda);
 
 // Another top-level item
         MenuBar.MenuItem snacks = navMeni.addItem("Snacks", null, null);
@@ -57,7 +56,7 @@ public class BwNavMeni extends CustomComponent {
         servs.addItem("Car Service", null, mycommand);
 
         System.out.println("Ubacen meni");
-        
+
         setCompositionRoot(navMeni);
     }
 }
