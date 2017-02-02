@@ -13170,7 +13170,6 @@ div.v-layout.v-horizontal.v-widget {
 .mytheme #tabela {
 	margin-left: 1%;
 	margin-right: 1%;
-	border: 5px solid #58983b;
 }
 
 .mytheme #prvi, .mytheme #drugi {
@@ -13193,8 +13192,8 @@ div.v-layout.v-horizontal.v-widget {
 	width: 100px;
 }
 
-.mytheme .example-table .v-table-header-cell {
-	background: #983b58;
+.mytheme .stilTabele .v-table-header-cell {
+	background: #3b5998;
 	color: white;
 	font-weight: bold;
 	font-size: 2em;

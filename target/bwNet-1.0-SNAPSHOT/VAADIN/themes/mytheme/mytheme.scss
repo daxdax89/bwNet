@@ -206,7 +206,7 @@
     #tabela{
         margin-left:1%;
         margin-right: 1%;
-        border: 5px solid #58983b;
+/*        border: 5px solid #58983b;*/
     }
 
     #prvi, #drugi{
@@ -229,8 +229,8 @@
         width: 100px;
     }
 
-    .example-table .v-table-header-cell {
-        background : #983b58;
+    .stilTabele .v-table-header-cell {
+        background : #3b5998;
         color: white;
         font-weight: bold;
         font-size: 2em;
