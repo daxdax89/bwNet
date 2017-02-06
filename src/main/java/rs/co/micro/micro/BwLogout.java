@@ -46,7 +46,6 @@ public class BwLogout extends CustomComponent implements View {
         });
 
         System.out.println("Ubacen logout");
-
         setCompositionRoot(logout);
     }
 

@@ -1,17 +1,21 @@
 package rs.co.micro.micro;
 
 import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.MenuBar;
 import com.vaadin.ui.Notification;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nFinex.BWkarticaPartnera;
 
 /**
  *
  * @author damir
  */
-public class BwNavMeni extends CustomComponent{
+public class BwNavMeni extends CustomComponent implements View {
 
     Navigator navigator;
 
@@ -31,17 +35,18 @@ public class BwNavMeni extends CustomComponent{
             }
         };
 
-
-        navigator.addView("karticaPartnera", new BWkarticaPartnera());
-        MenuBar.Command kpKomanda = new MenuBar.Command() {
+        // Kreira Kartica Partnera submeni i pokazuje Karticu 
+        MenuBar.MenuItem karticaPartnera = uvidi.addItem("Kartica Partnera", null, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
-                navigator.navigateTo("karticaPartnera");
+                try {
+                    getUI().getNavigator().addView("karticaPartnera", new BWkarticaPartnera());
+                } catch (SQLException ex) {
+                    System.out.println("nope");
+                }
+                getUI().getNavigator().navigateTo("karticaPartnera");
             }
-        };
-
-        // Kreira Kartica Partnera submeni i pokazuje Karticu 
-        MenuBar.MenuItem karticaPartnera = uvidi.addItem("Kartica Partnera", null, kpKomanda);
+        });
 
 // Another top-level item
         MenuBar.MenuItem snacks = navMeni.addItem("Snacks", null, null);
@@ -58,5 +63,10 @@ public class BwNavMeni extends CustomComponent{
         System.out.println("Ubacen meni");
 
         setCompositionRoot(navMeni);
+    }
+
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+        navigator = event.getNavigator();
     }
 }

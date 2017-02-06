@@ -12,11 +12,19 @@ import java.util.Locale;
  *
  * @author damir
  */
-public class BwTable extends CustomComponent{
+public class BwTable extends CustomComponent {
 
-    public BwTable() throws SQLException{
+    public BwTable() throws SQLException {
 
         Table podaci = new Table();
+
+//        podaci.addContainerProperty("Name", String.class, null);
+//        podaci.addContainerProperty("Mag", Float.class, null);
+//
+//        // Add a few other rows using shorthand addItem()
+//        podaci.addItem(new Object[]{"Canopus", -0.72f}, 2);
+//        podaci.addItem(new Object[]{"Arcturus", -0.04f}, 3);
+//        podaci.addItem(new Object[]{"Alpha Centauri", -0.01f}, 4);
         try {
             SimpleJDBCConnectionPool connectionPool = new SimpleJDBCConnectionPool("org.postgresql.Driver", "jdbc:postgresql://10.1.2.3:5432/BW6", "postgres", "superset");
             SQLContainer container = new SQLContainer(new FreeformQuery(
@@ -37,6 +45,7 @@ public class BwTable extends CustomComponent{
             System.out.println("radi");
 
         } catch (SQLException e) {
+            System.out.println(podaci.getContainerDataSource());
             System.out.println("Zajebao si" + e);
         }
 
@@ -73,7 +82,6 @@ public class BwTable extends CustomComponent{
         podaci.setColumnHeader("finnalog", "Šifra partnera");
         podaci.setColumnHeader("finnalog", "Šifra partnera");
         podaci.setColumnHeader("finnalog", "Šifra partnera");
-
 //// Show exactly the currently contained rows (items)
 //podaci.setPageLength(podaci.size());
         podaci.setId("tabela");
@@ -89,8 +97,7 @@ public class BwTable extends CustomComponent{
         podaci.setImmediate(true);
         System.out.println("Ubacena nasa tabela");
         setCompositionRoot(podaci);
-        
-        
+
     }
 
 }

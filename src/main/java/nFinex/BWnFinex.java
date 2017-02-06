@@ -8,7 +8,9 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
+import java.sql.SQLException;
 import rs.co.micro.micro.BwLogout;
+import rs.co.micro.micro.BwNavMeni;
 
 /**
  *
@@ -21,8 +23,9 @@ public class BWnFinex extends VerticalLayout implements View {
     Navigator navigator;
           
     BwLogout logout = new BwLogout();
+    BwNavMeni navMeni = new BwNavMeni();
 
-    public BWnFinex() {
+    public BWnFinex() throws SQLException{
 
         //Main Panel
         setResponsive(true);
@@ -36,7 +39,7 @@ public class BWnFinex extends VerticalLayout implements View {
         Label paketNaslov = new Label("nFinex");
         paketNaslov.setId("naslovFinex");
 
-        topMenu.addComponents(logout);
+        topMenu.addComponents(navMeni,logout);
         addComponents(topMenu, paketNaslov);
 
     }
