@@ -60,7 +60,7 @@ public class BwNavMeni extends CustomComponent implements View {
         MenuBar.MenuItem servs = navMeni.addItem("Services", null, null);
         servs.addItem("Car Service", null, mycommand);
 
-        System.out.println("Ubacen meni");
+        System.out.println("Ubacen Navmeni");
 
         setCompositionRoot(navMeni);
     }

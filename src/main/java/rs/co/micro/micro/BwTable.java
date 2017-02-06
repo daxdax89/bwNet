@@ -13,18 +13,12 @@ import java.util.Locale;
  * @author damir
  */
 public class BwTable extends CustomComponent {
-
+    int konto = 2040;
+    int partner = 1058;
     public BwTable() throws SQLException {
 
         Table podaci = new Table();
 
-//        podaci.addContainerProperty("Name", String.class, null);
-//        podaci.addContainerProperty("Mag", Float.class, null);
-//
-//        // Add a few other rows using shorthand addItem()
-//        podaci.addItem(new Object[]{"Canopus", -0.72f}, 2);
-//        podaci.addItem(new Object[]{"Arcturus", -0.04f}, 3);
-//        podaci.addItem(new Object[]{"Alpha Centauri", -0.01f}, 4);
         try {
             SimpleJDBCConnectionPool connectionPool = new SimpleJDBCConnectionPool("org.postgresql.Driver", "jdbc:postgresql://10.1.2.3:5432/BW6", "postgres", "superset");
             SQLContainer container = new SQLContainer(new FreeformQuery(
@@ -32,13 +26,13 @@ public class BwTable extends CustomComponent {
                     + "SELECT FinKonto, FinPartner::TEXT, FinNalog, FinDatNal, FinVezni, FinDokument, FinDatDok, PartPreduzece, PartMesto, PartAdresa, PartDefTelefon, PartDefRacun, kontonaziv, KontoPartner, FinDuguje, FinPotrazuje, 0::numeric AS FinSaldo, FinZatDug, FinZatPot, SUBSTR('OZD'::text, FinStatZatvor::int4 + 1, 1) AS FinStatZatvor, (FinDuguje - FinZatDug) AS FinOtDug, (FinPotrazuje - FinZatPot) AS FinOtPot, 0::numeric AS FinOtSaldo, FinZatDug, FinZatPot, 0::numeric AS FinZatSaldo, 0::numeric AS ZatIznos, FinOpis, FinDatDos, FinStavka, FinTrosak, FinGodina, FinDevDug, FinDevPot, FinMoneta, partpib, partmaticnibroj, kontoprenos, kontodevizni, COALESCE(findelbroj, 0) AS findelbroj FROM BUSINESS.finex t1 \n"
                     + "LEFT OUTER JOIN (SELECT kontobroj, kontonaziv[1] AS kontonaziv, kontopartner, kontoprenos, kontodevizni FROM BUSINESS.kplan_1) t2 on t2.kontobroj = t1.finkonto \n"
                     + "LEFT OUTER JOIN (SELECT partsifra, partfirma, partpreduzece, partmesto, partposta, partadresa, partmaticnibroj, partdefracun, partdeftelefon, CASE WHEN LENGTH(TRIM(partpib)) = 0 THEN partmaticnibroj ELSE partpib END AS partpib, parttip, partpdvstatus, partstatus, partkategorija FROM BUSINESS.partneri) t3 ON t1.FinPartner = t3.partsifra  \n"
-                    + "WHERE  finnalog = '1' AND  FinKonto = '2040' AND FinPartner = 1058  AND FinGodina >= 2016 AND FinDatNal BETWEEN '2016-01-01' AND '2017-01-11')\n"
+                    + "WHERE  finnalog = '1' AND  FinKonto = '" + konto+ "' AND FinPartner = " + partner + "AND FinGodina >= 2016 AND FinDatNal BETWEEN '2016-01-01' AND '2017-01-11')\n"
                     + "UNION ALL\n"
                     + "(\n"
                     + "SELECT FinKonto, FinPartner::TEXT, FinNalog, FinDatNal, FinVezni, FinDokument, FinDatDok, PartPreduzece, PartMesto, PartAdresa, PartDefTelefon, PartDefRacun, kontonaziv, KontoPartner, FinDuguje, FinPotrazuje, 0::numeric AS FinSaldo, FinZatDug, FinZatPot, SUBSTR('OZD'::text, FinStatZatvor::int4 + 1, 1) AS FinStatZatvor, (FinDuguje - FinZatDug) AS FinOtDug, (FinPotrazuje - FinZatPot) AS FinOtPot, 0::numeric AS FinOtSaldo, FinZatDug, FinZatPot, 0::numeric AS FinZatSaldo, 0::numeric AS ZatIznos, FinOpis, FinDatDos, FinStavka, FinTrosak, FinGodina, FinDevDug, FinDevPot, FinMoneta, partpib, partmaticnibroj, kontoprenos, kontodevizni, COALESCE(findelbroj, 0) AS findelbroj FROM BUSINESS.finex t1 \n"
                     + "LEFT OUTER JOIN (SELECT kontobroj, kontonaziv[1] AS kontonaziv, kontopartner, kontoprenos, kontodevizni FROM BUSINESS.kplan_1) t2 on t2.kontobroj = t1.finkonto \n"
                     + "LEFT OUTER JOIN (SELECT partsifra, partfirma, partpreduzece, partmesto, partposta, partadresa, partmaticnibroj, partdefracun, partdeftelefon, CASE WHEN LENGTH(TRIM(partpib)) = 0 THEN partmaticnibroj ELSE partpib END AS partpib, parttip, partpdvstatus, partstatus, partkategorija FROM BUSINESS.partneri) t3 ON t1.FinPartner = t3.partsifra\n"
-                    + "WHERE  finnalog <> '1' AND  FinKonto = '2040' AND FinPartner = 1058  AND FinGodina >= 2016 AND FinDatNal BETWEEN '2016-01-01' AND '2017-01-11')", connectionPool));
+                    + "WHERE  finnalog <> '1' AND  FinKonto = '" + partner+ "' AND FinPartner = " + partner + "AND FinGodina >= 2016 AND FinDatNal BETWEEN '2016-01-01' AND '2017-01-11')", connectionPool));
             podaci = new Table("", container);
             podaci.setSortEnabled(true);
             System.out.println(container);
@@ -99,5 +93,4 @@ public class BwTable extends CustomComponent {
         setCompositionRoot(podaci);
 
     }
-
 }
