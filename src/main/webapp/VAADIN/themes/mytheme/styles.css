@@ -13196,7 +13196,15 @@ div.v-layout.v-horizontal.v-widget {
 	background: #3b5998;
 	color: white;
 	font-weight: bold;
-	font-size: 2em;
+	font-size: 1.8em;
+}
+
+.mytheme #karticaMain {
+	text-align: center;
+}
+
+.mytheme #dugmad {
+	margin-top: 2%;
 }
 
 .fa, .FontAwesomeLabelAddon, .FontAwesomeIconAddon {

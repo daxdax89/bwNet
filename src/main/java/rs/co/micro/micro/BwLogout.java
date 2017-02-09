@@ -26,7 +26,14 @@ public class BwLogout extends CustomComponent implements View {
         logout.setResponsive(true);
         logout.setDescription("Izadjite iz programa");
 
-        MenuBar.MenuItem logoutDugme = logout.addItem("Logout", FontAwesome.SIGN_OUT, new MenuBar.Command() {
+        MenuBar.MenuItem kontakt = logout.addItem("Prijavi grešku", FontAwesome.MAIL_FORWARD, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem selectedItem) {
+
+            }
+        });
+
+        MenuBar.MenuItem logoutDugme = logout.addItem("Izađi", FontAwesome.SIGN_OUT, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem selectedItem) {
 
@@ -44,7 +51,6 @@ public class BwLogout extends CustomComponent implements View {
                 });
             }
         });
-
         System.out.println("Ubacen logout");
         setCompositionRoot(logout);
     }

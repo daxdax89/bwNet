@@ -1,6 +1,9 @@
 package rs.co.micro.bwNet;
 
 import com.vaadin.annotations.Theme;
+import com.vaadin.event.ShortcutAction;
+import com.vaadin.event.ShortcutAction.KeyCode;
+import static com.vaadin.event.ShortcutAction.KeyCode.F;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -68,6 +71,7 @@ public class welcome extends VerticalLayout implements View {
                         paketButton.setIcon(FontAwesome.MONEY);
                         paketButton.addClickListener(finexL);
                         paketButton.setId("finexDugme");
+                        paketButton.setClickShortcut(KeyCode.ENTER);
                         break;
                     case "Magic":
                         paketButton.setIcon(FontAwesome.ARCHIVE);
