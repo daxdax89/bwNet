@@ -1,10 +1,7 @@
 package rs.co.micro.bwNet;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.event.ShortcutAction;
 import com.vaadin.event.ShortcutAction.KeyCode;
-import static com.vaadin.event.ShortcutAction.KeyCode.F;
-import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
@@ -14,10 +11,6 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import nFinex.BWnFinex;
 
 /**
  *
@@ -25,8 +18,6 @@ import nFinex.BWnFinex;
  */
 @Theme("mytheme")
 public class welcome extends VerticalLayout implements View {
-
-    private Navigator navigator;
 
     public welcome() {
         setMargin(true);
@@ -45,13 +36,9 @@ public class welcome extends VerticalLayout implements View {
             Button.ClickListener finexL = new Button.ClickListener() {
                 @Override
                 public void buttonClick(Button.ClickEvent event) {
-                    try {
-                        navigator.addView("finex", new BWnFinex());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(welcome.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    getUI().getNavigator().navigateTo("finex");
 //                    Page.getCurrent().open("http://localhost:8080/bwNet/#!finex", "nFinex");
-                    navigator.navigateTo("finex");
+                    getUI().getNavigator().navigateTo("finex");
                 }
             };
 
@@ -127,6 +114,6 @@ public class welcome extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        navigator = event.getNavigator();
+
     }
 }

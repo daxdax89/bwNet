@@ -1,12 +1,10 @@
 package rs.co.micro.micro;
 
-import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.MenuBar;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import org.vaadin.dialogs.ConfirmDialog;
 
@@ -15,10 +13,6 @@ import org.vaadin.dialogs.ConfirmDialog;
  * @author damir
  */
 public class BwLogout extends CustomComponent implements View {
-
-    Navigator navigator;
-    Notification n;
-
     public BwLogout() {
         MenuBar logout = new MenuBar();
         logout.setId("logoutDugme");
@@ -57,6 +51,6 @@ public class BwLogout extends CustomComponent implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        navigator = event.getNavigator();
+        
     }
 }

@@ -37,8 +37,6 @@ import java.sql.Statement;
 @Title("Configure")
 public class configure extends VerticalLayout implements View {
 
-    private Navigator navigator;
-
     //Promenjive iz fajla
     private static final String FILENAME = "b2b.properties";
     private static String bazaMicro;
@@ -121,13 +119,11 @@ public class configure extends VerticalLayout implements View {
                 Notification.show("Neuspela konekcija na bazu podataka sa snimljenim parametrima, molimo vas pokusajte ponovo");
                 return;
             }
-            navigator.addView("login", new login());
-            navigator.navigateTo("login");
+                getUI().getNavigator().navigateTo("login");
             if (!checkUser(username, pass)) {
 
             } else {
-                navigator.addView("welcome", new welcome());
-                navigator.navigateTo("welcome");
+                getUI().getNavigator().navigateTo("welcome");
                 System.out.println("USAO SAM!");
             }
         });
@@ -147,7 +143,7 @@ public class configure extends VerticalLayout implements View {
     @Override
 
     public void enter(ViewChangeEvent event) {
-        navigator = event.getNavigator();
+
     }
 
     public static String getProperty(String key) {

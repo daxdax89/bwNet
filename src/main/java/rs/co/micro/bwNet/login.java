@@ -2,7 +2,6 @@ package rs.co.micro.bwNet;
 
 import com.vaadin.annotations.Title;
 import com.vaadin.event.ShortcutAction;
-import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
@@ -20,8 +19,6 @@ import com.vaadin.ui.VerticalLayout;
  */
 @Title("Login")
 public class login extends VerticalLayout implements View {
-
-    private Navigator navigator;
 
     public login() {
         setMargin(true);
@@ -55,8 +52,7 @@ public class login extends VerticalLayout implements View {
             configure.setUserPass(polje2.getValue());
 
             if (configure.checkUser(configure.getLozime(), configure.getLozPass())) {
-                navigator.addView("welcome", new welcome());
-                navigator.navigateTo("welcome");
+                getUI().getNavigator().navigateTo("welcome");
             } else {
                 Notification.show("Uneti podaci nisu tacni");
                 polje1.focus();
@@ -73,7 +69,6 @@ public class login extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        navigator = event.getNavigator();
-    }
 
+    }
 }

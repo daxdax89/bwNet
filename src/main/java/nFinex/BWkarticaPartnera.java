@@ -28,7 +28,6 @@ import rs.co.micro.micro.BwTable;
 @Title("Kartica Partnera")
 public class BWkarticaPartnera extends VerticalLayout implements View {
 
-    Navigator navigator;
     BwTable tablica = new BwTable();
     BwNavMeni navMeni = new BwNavMeni();
     BwLogout logout = new BwLogout();
@@ -94,7 +93,6 @@ public class BWkarticaPartnera extends VerticalLayout implements View {
                 Notification n = new Notification("Ukucali ste " + event.getText());
                 n.setPosition(Position.MIDDLE_CENTER);
                 n.show(Page.getCurrent());
-//                System.out.println(value);
             }
         });
 
@@ -129,6 +127,6 @@ public class BWkarticaPartnera extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        navigator = event.getNavigator();
+
     }
 }

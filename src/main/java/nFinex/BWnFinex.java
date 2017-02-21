@@ -20,12 +20,9 @@ import rs.co.micro.micro.BwNavMeni;
 @Title("nFinex")
 public class BWnFinex extends VerticalLayout implements View {
 
-    Navigator navigator;
-          
-    BwLogout logout = new BwLogout();
-    BwNavMeni navMeni = new BwNavMeni();
-
-    public BWnFinex() throws SQLException{
+    public BWnFinex() throws SQLException {
+        BwLogout logout = new BwLogout();
+        BwNavMeni navMeni = new BwNavMeni();
 
         //Main Panel
         setResponsive(true);
@@ -39,14 +36,12 @@ public class BWnFinex extends VerticalLayout implements View {
         Label paketNaslov = new Label("nFinex");
         paketNaslov.setId("naslovFinex");
 
-        topMenu.addComponents(navMeni,logout);
+        topMenu.addComponents(navMeni, logout);
         addComponents(topMenu, paketNaslov);
-
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        navigator = event.getNavigator();
-    }
 
+    }
 }

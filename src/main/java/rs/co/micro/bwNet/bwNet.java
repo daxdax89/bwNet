@@ -6,13 +6,14 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.View;
-import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
-import javax.servlet.http.Cookie;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import nFinex.BWkarticaPartnera;
+import nFinex.BWnFinex;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser
@@ -26,30 +27,41 @@ import javax.servlet.http.Cookie;
 @Theme("mytheme")
 @Title("BusinessWare Net")
 @PreserveOnRefresh
-public class bwNet extends UI implements View {
-
-    Navigator navigator = new Navigator(this, this);
-    configure cf = new configure();
+public class bwNet extends UI{
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        Cookie kolac = new Cookie("test", "cookie found");
-        VaadinService.getCurrentResponse().addCookie(kolac);
-        System.out.println("OVO JE KOLAC BRE!" + kolac);
-
-        if (!configure.load()) {
-            navigator.addView("configure", new configure());
-            navigator.navigateTo("configure");
-        } else {
+        try {
+            Navigator navigator = new Navigator(this, this);
+            
+            //Login
             navigator.addView("login", new login());
-            navigator.navigateTo("login");
+            
+            //Configure
+            navigator.addView("configure", new configure());
+            
+            //Welcome
+            navigator.addView("welcome", new welcome());
+            
+            //Finex
+            navigator.addView("finex", new BWnFinex());
+            
+            
+            //Kartica Partnera
+            try {
+                navigator.addView("karticaPartnera", new BWkarticaPartnera());
+            } catch (SQLException ex) {
+                System.out.println("Main klasa, nije uslo u karticu partnera");
+            }
+            
+            if (!configure.load()) {
+                navigator.navigateTo("configure");
+            } else {
+                navigator.navigateTo("login");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(bwNet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    }
-
-    @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
-        navigator = event.getNavigator();
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

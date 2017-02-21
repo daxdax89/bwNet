@@ -13039,10 +13039,10 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme .v-ui {
-	background: url('http://res.cloudinary.com/exodious/image/upload/v1483016170/pozadinaWeb_tmxtzq.png');
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: auto;
+	background-color: #fafafa;
 }
 
 .mytheme .belaBoja {
@@ -13086,10 +13086,9 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme .naslov {
 	font-size: 2em;
-	color: white;
+	color: #474747;
 	font-weight: bold;
 	height: 2%;
-	text-shadow: 0px 2px 2px #983b58;
 	text-align: center;
 }
 
@@ -13177,7 +13176,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .mytheme #konto, .mytheme #partner {
-	color: white;
+	color: #474747;
 	font-weight: bold;
 	width: 120px;
 }
@@ -13205,6 +13204,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .mytheme #dugmad {
 	margin-top: 2%;
+	margin-bottom: 2%;
 }
 
 .fa, .FontAwesomeLabelAddon, .FontAwesomeIconAddon {
